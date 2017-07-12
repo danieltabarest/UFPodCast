@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Application xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="UFPodCast.App">
+<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="UFPodCast.App"
+              xmlns:infra="clr-namespace:UFPodCast.Infrastructure;assembly=UFPodCast">
+    
   <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="Primary">#2196F3</Color>
@@ -14,6 +17,21 @@
                 <Setter Property="BarBackgroundColor" Value="{StaticResource Primary}" />
                 <Setter Property="BarTextColor" Value="White" />
             </Style>
+
+            <!-- Locator -->
+            <infra:InstanceLocator x:Key="Locator"></infra:InstanceLocator>
+
+            <!-- Parameters -->
+            <x:String x:Key="URLBase">http://soccerapi.azurewebsites.net</x:String>
+            <x:String x:Key="URLBase2">http://soccerbackend.azurewebsites.net</x:String>
+
+            <!-- Colors -->
+            <Color x:Key="MainColor">#F1F1F1</Color>
+            <Color x:Key="FontColor">#262d2f</Color>
+            <Color x:Key="AccentColor1">#3a4549</Color>
+            <Color x:Key="AccentColor2">#B5BE76</Color>
+            <Color x:Key="BackgroundColor">#839851</Color>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
