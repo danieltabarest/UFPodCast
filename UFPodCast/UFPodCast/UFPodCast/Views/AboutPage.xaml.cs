@@ -1,4 +1,5 @@
 ﻿
+using UFPodCast.ViewModels;
 using Xamarin.Forms;
 
 namespace UFPodCast.Views
@@ -8,6 +9,7 @@ namespace UFPodCast.Views
         public AboutPage()
         {
             InitializeComponent();
+            //BindingContext = new AboutViewModel();
         }
     }
 }

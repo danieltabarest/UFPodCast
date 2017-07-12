@@ -1,4 +1,5 @@
-﻿using UFPodCast.Views;
+﻿using UFPodCast.Services;
+using UFPodCast.Views;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -8,6 +9,22 @@ namespace UFPodCast
 {
     public partial class App : Application
     {
+        #region Attributes
+        private DataService dataService;
+        private ApiService apiService;
+        private DialogService dialogService;
+        private NavigationService navigationService;
+        #endregion
+        public static App Instance;
+        #region Properties
+        public static NavigationPage Navigator { get; internal set; }
+
+        public static MasterPage Master { get; internal set; }
+        #endregion
+
+
+
+
         public App()
         {
             InitializeComponent();
