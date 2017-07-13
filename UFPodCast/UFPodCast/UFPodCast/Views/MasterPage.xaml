@@ -11,7 +11,7 @@
         <NavigationPage 
             x:Name="Navigator">
             <x:Arguments>
-                <pages:ItemsPage/>
+                <pages:PodCastPage/>
             </x:Arguments>
         </NavigationPage>
     </MasterDetailPage.Detail>

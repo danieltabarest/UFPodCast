@@ -1,16 +1,16 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using SoccerApp.Models;
-using SoccerApp.Services;
+using UFPodCast.Models;
+using UFPodCast.Services;
 using System.Windows.Input;
 
 
-namespace SoccerApp.ViewModels
+namespace UFPodCast.ViewModels
 {
 
     namespace Soccer.ViewModels
     {
 
-        public class UserGroupItemViewModel : UserGroup
+        public class UserGroupItemViewModel //: UserGroup
         {
 
             private NavigationService navigationService;
@@ -21,14 +21,14 @@ namespace SoccerApp.ViewModels
                 navigationService = new NavigationService();
             }
 
-            public ICommand SelectGroupCommand { get { return new RelayCommand(SelectGroup); } }
+            //public ICommand SelectGroupCommand { get { return new RelayCommand(SelectGroup); } }
 
-            private async void SelectGroup()
-            {
-                var mainViewModel = MainViewModel.GetInstance();
-                mainViewModel.UserGroup= new UserGroupViewModel(this);
-                await navigationService.Navigate("UserGroupPage");
-            }
+            //private async void SelectGroup()
+            //{
+            //    var mainViewModel = MainViewModel.GetInstance();
+            //    mainViewModel.UserGroup= new UserGroupViewModel(this);
+            //    await navigationService.Navigate("UserGroupPage");
+            //}
 
         }
 

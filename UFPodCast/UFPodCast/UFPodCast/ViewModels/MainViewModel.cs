@@ -9,10 +9,14 @@ using UFPodCast.ViewModels;
 using System.ComponentModel;
 using UFPodCast.Models;
 using UFPodCast.Services;
+using System.Threading.Tasks;
+using UFPodCast.Helpers;
+using UFPodCast.Views;
+using GalaSoft.MvvmLight.Command;
 
 namespace UFPodCast.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class MainViewModel : BaseViewModel
     {
         #region Attributes
         private ApiService apiService;
@@ -20,11 +24,12 @@ namespace UFPodCast.ViewModels
         private DialogService dialogService;
         private NavigationService navigationService;
         private bool isRefreshing = false;
-        //private User currentUser;
         #endregion
 
         #region Properties
-        //public LoginViewModel Login { get; set; }
+        public PodCastViewModel PodCastViewModel { get; set; }
+
+        public PodCastViewModel ItemDetailViewModel { get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
@@ -40,9 +45,64 @@ namespace UFPodCast.ViewModels
             navigationService = new NavigationService();
             dataService = new DataService();
 
+            //Title = "Browse";
+            Items = new ObservableRangeCollection<Item>();
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+
+            MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+            {
+                var _item = item as Item;
+                Items.Add(_item);
+                await DataStore.AddItemAsync(_item);
+            });
+
             LoadMenu();
         }
         #endregion
+
+
+        public ObservableRangeCollection<Item> Items { get; set; }
+        public Command LoadItemsCommand { get; set; }
+
+        async Task ExecuteLoadItemsCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                Items.Clear();
+                var items = await DataStore.GetItemsAsync(true);
+                Items.ReplaceRange(items);
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                MessagingCenter.Send(new MessagingCenterAlert
+                {
+                    Title = "Error",
+                    Message = "Unable to load items.",
+                    Cancel = "OK"
+                }, "message");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
+        }
+
+
+        public ICommand SelectPodCastCommand { get { return new RelayCommand(SelectPodCast); } }
+
+        private async void SelectPodCast()
+        {
+            var mainViewModel = MainViewModel.GetInstance();
+            //mainViewModel.ItemDetailViewModel = new ItemDetailViewModel(this);
+            await navigationService.Navigate("EditPreditionsPage");
+        }
+
 
         #region Events
         public event PropertyChangedEventHandler PropertyChanged;
@@ -62,8 +122,9 @@ namespace UFPodCast.ViewModels
         }
         #endregion
 
-        private void LoadMenu()
+        private  void LoadMenu()
         {
+            
             Menu = new ObservableCollection<MenuItemViewModel>();
 
             Menu.Add(new MenuItemViewModel
@@ -84,7 +145,7 @@ namespace UFPodCast.ViewModels
             {
                 Icon = "ic_card_membership_black_24dp.png",
                 PageName = "SelectTournamentPage",
-                Title = "Tournaments",
+                Title = "Testing",
             });
 
             Menu.Add(new MenuItemViewModel

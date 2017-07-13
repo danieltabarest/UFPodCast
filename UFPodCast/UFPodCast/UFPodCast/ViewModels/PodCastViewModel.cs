@@ -1,8 +1,7 @@
-﻿using GalaSoft.MvvmLight.Command;
-using System;
+﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using System.Windows.Input;
+
 using UFPodCast.Helpers;
 using UFPodCast.Models;
 using UFPodCast.Views;
@@ -11,12 +10,12 @@ using Xamarin.Forms;
 
 namespace UFPodCast.ViewModels
 {
-    public class ItemsViewModel : BaseViewModel
+    public class PodCastViewModel : BaseViewModel
     {
         public ObservableRangeCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
-        public ItemsViewModel()
+        public PodCastViewModel()
         {
             Title = "Browse";
             Items = new ObservableRangeCollection<Item>();
@@ -29,7 +28,6 @@ namespace UFPodCast.ViewModels
                 await DataStore.AddItemAsync(_item);
             });
         }
-
 
         async Task ExecuteLoadItemsCommand()
         {

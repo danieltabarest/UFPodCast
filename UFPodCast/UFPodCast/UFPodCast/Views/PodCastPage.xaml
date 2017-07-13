@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="SoccerApp.Views.UserGroupPage"
+             x:Class="UFPodCast.Views.PodCastPage"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
               BackgroundColor="{StaticResource AccentColor1}"
-    Title="Select group user"
+    Title="PodCast"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
+    <!--BindingContext="{Binding ItemsViewModel}"-->
     <StackLayout
-        BindingContext="{Binding UserGroup}"
         Padding="8">
 
         <!--<StackLayout
@@ -19,33 +19,39 @@
                                   HeightRequest="100">
             </Image>
         </StackLayout>-->
-        <ListView
-            ItemsSource="{Binding MyGroupsUsers}"
-            HasUnevenRows="True">
+        <ListView x:Name="ItemsListView"
+           ItemsSource="{Binding Items}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+                RefreshCommand="{Binding LoadItemsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
+                ItemSelected="OnItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid Padding="8">
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding SelectUserCommand}"/>
-                            </Grid.GestureRecognizers>
+                            <!--<Grid.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding SelectPodCastCommand}"/>
+                            </Grid.GestureRecognizers>-->
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <RelativeLayout>
                                 <controls:CircleImage 
-                                    Source="{Binding User.FullPicture}" 
+                                    Source="leon2.jpg" 
                                     Aspect="AspectFill"
                                     WidthRequest="80"
                                     HeightRequest="80">
                                 </controls:CircleImage>
-                                <Image
+                                <!--<Image
                                     Source="{Binding User.FavoriteTeam.FullLogo}"
                                     WidthRequest="40"
                                     RelativeLayout.XConstraint="{ConstraintExpression Type=Constant, Constant=50}"
                                     RelativeLayout.YConstraint="{ConstraintExpression Type=Constant, Constant=40}">
-                                </Image>
+                                </Image>-->
                             </RelativeLayout>
                             <StackLayout 
                                 VerticalOptions="Center"
@@ -55,7 +61,7 @@
                                     FontSize="Medium"
                                     VerticalOptions="Center"
                                     TextColor="Black"
-                                    Text="{Binding User.FullName}">
+                                    Text="{Binding Text}">
                                 </Label>
 
                                 <Label
@@ -63,7 +69,7 @@
                                     FontSize="Medium"
                                     VerticalOptions="Center"
                                     TextColor="Black"
-                                    Text="{Binding Points, StringFormat='Points: {0}'}">
+                                    Text="{Binding Text}">
                                 </Label>
 
                             </StackLayout>
