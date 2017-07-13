@@ -1,4 +1,5 @@
 ﻿using UFPodCast.Services;
+using UFPodCast.ViewModels;
 using UFPodCast.Views;
 
 using Xamarin.Forms;
@@ -23,13 +24,19 @@ namespace UFPodCast
         #endregion
 
 
-
-
         public App()
         {
+            Instance = this;
             InitializeComponent();
+            dialogService = new DialogService();
+            apiService = new ApiService();
+            dataService = new DataService();
+            navigationService = new NavigationService();
 
-            SetMainPage();
+            var mainViewModel = MainViewModel.GetInstance();
+            MainPage = new MasterPage();
+
+            //SetMainPage();
         }
 
         public static void SetMainPage()

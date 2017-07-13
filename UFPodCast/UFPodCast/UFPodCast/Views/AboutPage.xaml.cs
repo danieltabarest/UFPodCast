@@ -9,7 +9,6 @@ namespace UFPodCast.Views
         public AboutPage()
         {
             InitializeComponent();
-            //BindingContext = new AboutViewModel();
         }
     }
 }

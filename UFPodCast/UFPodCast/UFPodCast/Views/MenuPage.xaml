@@ -10,7 +10,7 @@
         Padding="8">
         <Image
             WidthRequest="250"
-         Source="medium.jpg">
+            Source="ico1.png">
         </Image>
         <ListView 
             ItemsSource="{Binding Menu}"
