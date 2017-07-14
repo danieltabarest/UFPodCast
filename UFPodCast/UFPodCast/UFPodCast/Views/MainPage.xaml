@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<customrenderers:SearchPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customrenderers="clr-namespace:UFPodCast.CustomRenderers;assembly=UFPodCast" 
              x:Class="UFPodCast.Views.MainPage"
+             SearchPlaceHolderText="Type to Search"
+		     SearchCommand="{Binding SearchCommand}"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
-              BackgroundColor="White"
-    Title="PodCast"
-    BindingContext="{Binding Main, Source={StaticResource Locator}}">
-    <SearchBar x:Name="searchBar"
-           Placeholder="Search"
-           Text="asdfdsf"
-           SearchCommand="{Binding SearchCommand}"/>
+             BackgroundColor="White"
+            Title="PodCast"
+            BindingContext="{Binding Main, Source={StaticResource Locator}}">
     <StackLayout
         Padding="8">
         <ListView x:Name="ItemsListView"
@@ -90,4 +89,4 @@
         </ListView>
     </StackLayout>
 
-</ContentPage>
+</customrenderers:SearchPage>

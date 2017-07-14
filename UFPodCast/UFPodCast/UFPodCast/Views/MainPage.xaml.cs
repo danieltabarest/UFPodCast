@@ -1,12 +1,13 @@
 ﻿
 using System;
+using UFPodCast.CustomRenderers;
 using UFPodCast.Models;
 using UFPodCast.ViewModels;
 using Xamarin.Forms;
 
 namespace UFPodCast.Views
 {
-    public partial class MainPage : ContentPage
+    public partial class MainPage : SearchPage
     {
         MainViewModel viewModel;
 

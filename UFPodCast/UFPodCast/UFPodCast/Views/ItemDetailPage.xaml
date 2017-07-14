@@ -5,7 +5,7 @@
              Title="{Binding Title}">
     <ScrollView>
         <StackLayout Orientation="Vertical" Spacing="10">
-            <Image Aspect="AspectFill"  Source="elefant.jpg" HeightRequest="230"/>
+            <Image Aspect="AspectFill"  Source="elefant.jpg" HeightRequest="200"/>
             <StackLayout Spacing="10" 
                    Padding="10" 
                    VerticalOptions="FillAndExpand">

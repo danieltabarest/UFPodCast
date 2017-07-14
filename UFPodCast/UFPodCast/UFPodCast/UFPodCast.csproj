@@ -39,6 +39,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\BindablePicker.cs" />
+    <Compile Include="CustomRenderers\SearchPage.cs" />
     <Compile Include="Data\DataAccess.cs" />
     <Compile Include="Helpers\MessengingCenterAlert.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />

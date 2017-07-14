@@ -2886,6 +2886,9 @@ namespace UFPodCast.Droid
 			// aapt resource value: 0x7f0a0043
 			public const int action_mode_close_button = 2131361859;
 			
+			// aapt resource value: 0x7f0a00b4
+			public const int action_search = 2131361972;
+			
 			// aapt resource value: 0x7f0a009b
 			public const int action_text = 2131361947;
 			
@@ -3666,6 +3669,22 @@ namespace UFPodCast.Droid
 			}
 			
 			private Layout()
+			{
+			}
+		}
+		
+		public partial class Menu
+		{
+			
+			// aapt resource value: 0x7f0e0000
+			public const int mainmenu = 2131623936;
+			
+			static Menu()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Menu()
 			{
 			}
 		}

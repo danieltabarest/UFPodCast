@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using UFPodCast.Helpers;
 using UFPodCast.Views;
 using GalaSoft.MvvmLight.Command;
+using System.Net.Http;
 
 namespace UFPodCast.ViewModels
 {
@@ -47,6 +48,7 @@ namespace UFPodCast.ViewModels
 
             //Title = "Browse";
             Items = new ObservableRangeCollection<Item>();
+            OldItem = new List<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
@@ -54,6 +56,12 @@ namespace UFPodCast.ViewModels
                 var _item = item as Item;
                 Items.Add(_item);
                 await DataStore.AddItemAsync(_item);
+            });
+
+            SearchCommand = new Command((object obj) =>
+            {
+                var value = (string)obj;
+                Items.ReplaceRange(OldItem.Where(x => x.Text.Contains(value)));
             });
 
             LoadMenu();
@@ -65,6 +73,7 @@ namespace UFPodCast.ViewModels
 
 
         #region Events
+        public List<Item> OldItem { get; set; }
         public ObservableRangeCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
@@ -98,6 +107,7 @@ namespace UFPodCast.ViewModels
                 Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
                 Items.ReplaceRange(items);
+                OldItem.AddRange(items);
             }
             catch (Exception ex)
             {
@@ -117,6 +127,24 @@ namespace UFPodCast.ViewModels
 
 
         public ICommand SelectPodCastCommand { get { return new RelayCommand(SelectPodCast); } }
+
+
+        public ICommand SearchCommand { get; }
+        string searchResult;
+
+        public string SearchResult
+        {
+            get
+            {
+                return searchResult;
+            }
+
+            set
+            {
+                searchResult = value;
+                OnPropertyChanged();
+            }
+        }
 
         private async void SelectPodCast()
         {
