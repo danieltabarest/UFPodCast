@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using ImageCircle.Forms.Plugin.Droid;
+using Plugin.MediaManager.Forms;
 
 namespace UFPodCast.Droid
 {
@@ -16,7 +17,7 @@ namespace UFPodCast.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
-
+            Plugin.MediaManager.Forms.Android.VideoViewRenderer.Init();
             global::Xamarin.Forms.Forms.Init(this, bundle);
             
             ImageCircleRenderer.Init();

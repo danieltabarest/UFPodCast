@@ -6,39 +6,43 @@
     BackgroundColor="{StaticResource MainColor}"
     Title="Menu"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
-    <StackLayout
-        Padding="8">
-        <Image
-            WidthRequest="250"
-            Source="ico1.png">
+    <StackLayout Orientation="Vertical"
+    <Image
+            HeightRequest="200"
+            Source="elefant.jpg"
+            Aspect="AspectFill">
         </Image>
-        <ListView 
+        <StackLayout
+        Padding="8">
+
+            <ListView 
             ItemsSource="{Binding Menu}"
             HasUnevenRows="True">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding NavigateCommand}"/>
-                            </Grid.GestureRecognizers>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <Image 
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NavigateCommand}"/>
+                                </Grid.GestureRecognizers>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image 
                                 Source="{Binding Icon}"
                                 WidthRequest="50"
                                 HeightRequest="50"/>
-                            <Label 
+                                <Label 
                                 Grid.Column="1"
                                 VerticalOptions="Center"
                                 TextColor="{StaticResource AccentColor1}"
                                 Text="{Binding Title}"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

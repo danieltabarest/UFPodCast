@@ -62,17 +62,11 @@
     <Compile Include="ViewModels\AboutViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\ItemDetailViewModel.cs" />
-    <Compile Include="ViewModels\PodCastViewModel.cs" />
     <Compile Include="ViewModels\ItemsViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\MenuItemViewModel.cs" />
-    <Compile Include="ViewModels\UserGroupItemViewModel.cs" />
-    <Compile Include="ViewModels\UserGroupViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\HomePage.xaml.cs">
-      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ItemDetailPage.xaml.cs">
       <DependentUpon>ItemDetailPage.xaml</DependentUpon>
@@ -91,9 +85,6 @@
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PodcastPlaybackPage.xaml.cs">
-      <DependentUpon>PodcastPlaybackPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -183,10 +174,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\HomePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\MasterPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -198,12 +185,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\MainPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\PodcastPlaybackPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

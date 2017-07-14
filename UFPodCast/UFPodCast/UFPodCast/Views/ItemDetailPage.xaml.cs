@@ -1,9 +1,11 @@
 ﻿
+using Plugin.Connectivity;
 using Plugin.MediaManager;
 using Plugin.MediaManager.Abstractions;
 using Plugin.MediaManager.Abstractions.Enums;
 using Plugin.MediaManager.Abstractions.Implementations;
 using Plugin.Share;
+using UFPodCast.Services;
 using UFPodCast.ViewModels;
 using Xamarin.Forms;
 
@@ -11,19 +13,27 @@ namespace UFPodCast.Views
 {
     public partial class ItemDetailPage : ContentPage
     {
+        #region Attributes
+        private ApiService apiService;
+        private DataService dataService;
+        private DialogService dialogService;
+        private NavigationService navigationService;
+        string searchResult;
         ItemDetailViewModel viewModel;
-
+        #endregion
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
-  
-
         public ItemDetailPage(ItemDetailViewModel viewModel)
         {
+
             InitializeComponent();
             BindingContext = this.viewModel = viewModel;
+            dialogService = new DialogService();
+
+            CheckConnectivity();
 
             //BindingContext = item;
             CrossMediaManager.Current.PlayingChanged += (sender, args) => ProgressBar.Progress = args.Progress;
-            CrossMediaManager.Current.Play(new MediaFile("", MediaFileType.Audio));
+            CrossMediaManager.Current.Play(new MediaFile(@"http://www.podtrac.com/pts/redirect.mp3/s3.amazonaws.com/hanselminutes/hanselminutes_0579.mp3", MediaFileType.Audio));
             webView.Source = new HtmlWebViewSource
             {
                 Html = "asfsdasdfsa"// item.Description
@@ -40,7 +50,7 @@ namespace UFPodCast.Views
                     {
                         Text = "Listening to @sUFPodCast's ",// + item.Title + " " + item.Link,
                         Title = "Share",
-                        Url = ""//item.Link
+                        Url = "asdfasdfasdfasdfsadfasdfsd"//item.Link
                     });
                 })
             };
@@ -67,6 +77,24 @@ namespace UFPodCast.Views
                 this.pause.TextColor = Color.Black;
                 this.stop.TextColor = Color.Black;
             }
+        }
+
+        private async void CheckConnectivity()
+        {
+
+            if (!CrossConnectivity.Current.IsConnected)
+            {
+                await dialogService.ShowMessage("Error", "Check you internet connection.");
+                return;
+            }
+
+            var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+            if (!isReachable)
+            {
+                await dialogService.ShowMessage("Error", "Check you internet connection.");
+                return;
+            }
+
         }
 
         private IPlaybackController PlaybackController => CrossMediaManager.Current.PlaybackController;

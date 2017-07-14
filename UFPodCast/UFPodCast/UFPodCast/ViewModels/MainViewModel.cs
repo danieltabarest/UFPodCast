@@ -14,6 +14,7 @@ using UFPodCast.Helpers;
 using UFPodCast.Views;
 using GalaSoft.MvvmLight.Command;
 using System.Net.Http;
+using Plugin.Connectivity;
 
 namespace UFPodCast.ViewModels
 {
@@ -25,16 +26,21 @@ namespace UFPodCast.ViewModels
         private DialogService dialogService;
         private NavigationService navigationService;
         private bool isRefreshing = false;
+        string searchResult;
+
         #endregion
 
         #region Properties
-        public PodCastViewModel PodCastViewModel { get; set; }
+        //public PodCastViewModel PodCastViewModel { get; set; }
 
-        public PodCastViewModel ItemDetailViewModel { get; set; }
+        //public PodCastViewModel ItemDetailViewModel { get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
+        public List<Item> OldItem { get; set; }
+        public ObservableRangeCollection<Item> Items { get; set; }
 
+        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Constructor
@@ -61,7 +67,7 @@ namespace UFPodCast.ViewModels
             SearchCommand = new Command((object obj) =>
             {
                 var value = (string)obj;
-                Items.ReplaceRange(OldItem.Where(x => x.Text.Contains(value)));
+                Items.ReplaceRange(OldItem.Where(x => x.Text.Contains(value) || x.Description.Contains(value)));
             });
 
             LoadMenu();
@@ -73,11 +79,8 @@ namespace UFPodCast.ViewModels
 
 
         #region Events
-        public List<Item> OldItem { get; set; }
-        public ObservableRangeCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
         #endregion
 
         #region Singleton
@@ -97,6 +100,7 @@ namespace UFPodCast.ViewModels
 
         async Task ExecuteLoadItemsCommand()
         {
+
             if (IsBusy)
                 return;
 
@@ -104,6 +108,21 @@ namespace UFPodCast.ViewModels
 
             try
             {
+
+                if (!CrossConnectivity.Current.IsConnected)
+                {
+                    await dialogService.ShowMessage("Error", "Check you internet connection.");
+                    return;
+                }
+
+                var isReachable = await CrossConnectivity.Current.IsRemoteReachable("google.com");
+                if (!isReachable)
+                {
+                    await dialogService.ShowMessage("Error", "Check you internet connection.");
+                    return;
+                }
+
+
                 Items.Clear();
                 var items = await DataStore.GetItemsAsync(true);
                 Items.ReplaceRange(items);
@@ -130,7 +149,6 @@ namespace UFPodCast.ViewModels
 
 
         public ICommand SearchCommand { get; }
-        string searchResult;
 
         public string SearchResult
         {
