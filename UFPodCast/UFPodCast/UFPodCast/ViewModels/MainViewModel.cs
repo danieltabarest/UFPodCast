@@ -61,8 +61,30 @@ namespace UFPodCast.ViewModels
         #endregion
 
 
+
+
+
+        #region Events
         public ObservableRangeCollection<Item> Items { get; set; }
         public Command LoadItemsCommand { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        #region Singleton
+        private static MainViewModel instance;
+
+        public static MainViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                instance = new MainViewModel();
+            }
+
+            return instance;
+        }
+        #endregion
+
 
         async Task ExecuteLoadItemsCommand()
         {
@@ -104,25 +126,7 @@ namespace UFPodCast.ViewModels
         }
 
 
-        #region Events
-        public event PropertyChangedEventHandler PropertyChanged;
-        #endregion
-
-        #region Singleton
-        private static MainViewModel instance;
-
-        public static MainViewModel GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = new MainViewModel();
-            }
-
-            return instance;
-        }
-        #endregion
-
-        private  void LoadMenu()
+        private void LoadMenu()
         {
             
             Menu = new ObservableCollection<MenuItemViewModel>();

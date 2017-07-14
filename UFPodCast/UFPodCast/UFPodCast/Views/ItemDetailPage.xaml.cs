@@ -14,11 +14,13 @@ namespace UFPodCast.Views
         ItemDetailViewModel viewModel;
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
-        public ItemDetailPage()
+  
+
+        public ItemDetailPage(ItemDetailViewModel viewModel)
         {
             InitializeComponent();
+            BindingContext = this.viewModel = viewModel;
 
-            InitializeComponent();
             //BindingContext = item;
             CrossMediaManager.Current.PlayingChanged += (sender, args) => ProgressBar.Progress = args.Progress;
             CrossMediaManager.Current.Play(new MediaFile("", MediaFileType.Audio));
@@ -65,13 +67,6 @@ namespace UFPodCast.Views
                 this.pause.TextColor = Color.Black;
                 this.stop.TextColor = Color.Black;
             }
-        }
-
-        public ItemDetailPage(ItemDetailViewModel viewModel)
-        {
-            InitializeComponent();
-
-            BindingContext = this.viewModel = viewModel;
         }
 
         private IPlaybackController PlaybackController => CrossMediaManager.Current.PlaybackController;
