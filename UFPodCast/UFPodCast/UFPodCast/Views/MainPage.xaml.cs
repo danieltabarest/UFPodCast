@@ -6,15 +6,14 @@ using Xamarin.Forms;
 
 namespace UFPodCast.Views
 {
-    public partial class PodCastPage : ContentPage
+    public partial class MainPage : ContentPage
     {
-        ItemsViewModel viewModel;
+        MainViewModel viewModel;
 
-        public PodCastPage()
+        public MainPage()
         {
             InitializeComponent();
-
-            viewModel = new ItemsViewModel();
+            viewModel =  MainViewModel.GetInstance(); ;
         }
 
         async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)

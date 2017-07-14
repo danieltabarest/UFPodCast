@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="UFPodCast.Views.ItemDetailPage"
              Title="{Binding Title}">
-	<!--<StackLayout Spacing="20" Padding="15">
+    <!--<StackLayout Spacing="20" Padding="15">
 		<Label Text="{Binding Item.Text}" FontSize="Medium"/>
         <Label Text="{Binding Item.Description}" FontSize="Small"/>
     </StackLayout>-->
@@ -23,7 +23,7 @@
                 </ContentView>
             </StackLayout>
         </StackLayout>
-        <ScrollView Grid.Row="1">
+        <!--<ScrollView Grid.Row="1">
             <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
                 <Label FontSize="22">
                     <Label.FormattedText>
@@ -67,6 +67,32 @@
                 BackgroundColor="{StaticResource Primary}"
                 TextColor="White"/>
             </StackLayout>
+        </ScrollView>-->
+
+
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="16,40,16,40" Spacing="10">
+
+                <StackLayout Padding="10" Spacing="5">
+                    <Label Text="{Binding Title}" FontSize="Medium" x:Name="title" />
+                    <Label Text="{Binding PublishDate}" x:Name="date"/>
+                    <ProgressBar x:Name="ProgressBar"/>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand" Spacing="10">
+                        <Button  x:Name="play" Image="ic_play.png" HorizontalOptions="Center"/>
+                        <Button  x:Name="pause" Image="ic_pause.png" HorizontalOptions="Center"/>
+                        <Button  x:Name="stop" Image="ic_stop.png" HorizontalOptions="Center"/>
+                    </StackLayout>
+                    <WebView x:Name="webView" VerticalOptions="FillAndExpand"></WebView>
+                </StackLayout>
+
+                <Button Margin="0,10,0,0"
+                Text="Learn more" 
+                Command="{Binding OpenWebCommand}"
+                BackgroundColor="{StaticResource Primary}"
+                TextColor="White"/>
+            </StackLayout>
         </ScrollView>
+
     </Grid>
 </ContentPage>
