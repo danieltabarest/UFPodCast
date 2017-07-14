@@ -6,8 +6,8 @@
     BackgroundColor="{StaticResource MainColor}"
     Title="Menu"
     BindingContext="{Binding Main, Source={StaticResource Locator}}">
-    <StackLayout Orientation="Vertical"
-    <Image
+    <StackLayout Orientation="Vertical">
+        <Image
             HeightRequest="200"
             Source="elefant.jpg"
             Aspect="AspectFill">
