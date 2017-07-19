@@ -17,8 +17,7 @@
       <infra:InstanceLocator x:Key="Locator">
       </infra:InstanceLocator>
       <!-- Parameters -->
-      <x:String x:Key="URLBase">http://TEST.azurewebsites.net</x:String>
-      <x:String x:Key="URLBase2">http://TEST.azurewebsites.net</x:String>
+      <x:String x:Key="URLBase">http://190.251.13.181:8080</x:String>
       <!-- Colors -->
        <Color x:Key="MainColor">#FFFFFF</Color>
       <Color x:Key="FontColor">#262d2f</Color>

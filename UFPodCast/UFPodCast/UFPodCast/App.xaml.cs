@@ -1,4 +1,5 @@
-﻿using UFPodCast.Services;
+﻿using UFPodCast.Models;
+using UFPodCast.Services;
 using UFPodCast.ViewModels;
 using UFPodCast.Views;
 
@@ -31,6 +32,8 @@ namespace UFPodCast
             dialogService = new DialogService();
             apiService = new ApiService();
             dataService = new DataService();
+            LoadParameters();
+
             navigationService = new NavigationService();
 
             var mainViewModel = MainViewModel.GetInstance();
@@ -59,6 +62,28 @@ namespace UFPodCast
             };
         }
 
+        #region Methods
+        private void LoadParameters()
+        {
+            var urlBase = Application.Current.Resources["URLBase"].ToString();
+
+            var parameter = dataService.First<Parameter>(false);
+            if (parameter == null)
+            {
+                parameter = new Parameter
+                {
+                    URLBase = urlBase,
+                };
+
+                dataService.Insert(parameter);
+            }
+            else
+            {
+                parameter.URLBase = urlBase;
+                dataService.Update(parameter);
+            }
+        }
+
         protected override void OnStart()
         {
             // Handle when your app starts
@@ -73,7 +98,7 @@ namespace UFPodCast
         {
             // Handle when your app resumes
         }
-
+        #endregion
 
     }
 }

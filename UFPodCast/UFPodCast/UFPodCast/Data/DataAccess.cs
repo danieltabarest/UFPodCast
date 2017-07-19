@@ -1,6 +1,6 @@
 ﻿
-//using SQLite.Net;
-//using SQLiteNetExtensions.Extensions;
+using SQLite.Net;
+using SQLiteNetExtensions.Extensions;
 using UFPodCast.Interfaces;
 using UFPodCast.Models;
 using System;
@@ -13,18 +13,16 @@ namespace UFPodCast
 {
     public class DataAccess : IDisposable
     {
-        /*  private SQLiteConnection connection;
+        private SQLiteConnection connection;
 
           public DataAccess()
           {
               var config = DependencyService.Get<IConfig>();
               connection = new SQLiteConnection(config.Platform,
-                  System.IO.Path.Combine(config.DirectoryDB, "test.db3"));
+                  System.IO.Path.Combine(config.DirectoryDB, "UfPodCast.db3"));
 
               connection.CreateTable<Parameter>();
-              connection.CreateTable<Team>();
-              connection.CreateTable<User>();
-              connection.CreateTable<UserType>();
+              
           }
 
           public void Insert<T>(T model)
@@ -76,11 +74,11 @@ namespace UFPodCast
               {
                   return connection.Table<T>().FirstOrDefault(m => m.GetHashCode() == pk);
               }
-          }*/
+          }
 
         public void Dispose()
         {
-            //connection.Dispose();
+            connection.Dispose();
         }
     }
 

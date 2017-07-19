@@ -39,47 +39,86 @@
                                   HeightRequest="150">
                                 </Image>
                             </StackLayout>
-                            <StackLayout 
-                                VerticalOptions="Center"
-                                Grid.Column="1">
-                                <Label
+                            <StackLayout VerticalOptions="Center" Grid.Column="1">
+                                <StackLayout VerticalOptions="Center" Orientation="Horizontal" >
+                                    <Label
                                     FontAttributes="Bold"
                                     FontSize="Medium"
                                     VerticalOptions="Center"
                                     TextColor="Black"
-                                    Text="{Binding Text}">
-                                </Label>
-
-                                <Label
+                                    Text="Autor:">
+                                    </Label>
+                                    <Label
                                     FontSize="Medium"
                                     VerticalOptions="Center"
                                     TextColor="Black"
-                                    Text="Titulo:">
-                                </Label>
+                                    Text="{Binding ID_AUTOR}">
+                                    </Label>
+                                </StackLayout>
 
-                                <Label
+                                <StackLayout VerticalOptions="Center" Orientation="Horizontal" >
+                                    <Label
                                     FontAttributes="Bold"
                                     FontSize="Medium"
                                     VerticalOptions="Center"
                                     TextColor="Black"
-                                    Text="{Binding Text}">
-                                </Label>
-
-                                <Label
-                                    FontAttributes="Bold"
+                                    Text="CATEGORIA:">
+                                    </Label>
+                                    <Label
+                                    
                                     FontSize="Medium"
                                     VerticalOptions="Center"
                                     TextColor="Black"
-                                    Text="Estreno">
-                                </Label>
+                                    Text="{Binding ID_CATEGORIA}">
+                                    </Label>
+                                </StackLayout>
 
-                                <Label
-                                    FontAttributes="Bold"
+                                <StackLayout VerticalOptions="Center" Orientation="Horizontal" >
+                                    <Label
+                                        FontAttributes="Bold"
                                     FontSize="Medium"
                                     VerticalOptions="Center"
                                     TextColor="Black"
-                                    Text="Genero">
-                                </Label>
+                                    Text="NOMBRE:">
+                                    </Label>
+                                    <Label
+                                    FontSize="Medium"
+                                    VerticalOptions="Center"
+                                    TextColor="Black"
+                                    Text="{Binding S_NOMBRE}">
+                                    </Label>
+                                </StackLayout>
+                                <StackLayout VerticalOptions="Center" Orientation="Horizontal" >
+                                    <Label
+                                        FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    VerticalOptions="Center"
+                                    TextColor="Black"
+                                    Text="DESCRIPCION:">
+                                    </Label>
+                                    <Label
+                                    FontSize="Medium"
+                                    VerticalOptions="Center"
+                                    TextColor="Black"
+                                    Text="{Binding S_DESCRIPCION}">
+                                    </Label>
+                                </StackLayout>
+
+                                <StackLayout VerticalOptions="Center" Orientation="Horizontal" >
+                                    <Label
+                                        FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    VerticalOptions="Center"
+                                    TextColor="Black"
+                                    Text="PALABRASCLAVE:">
+                                    </Label>
+                                    <Label
+                                    FontSize="Medium"
+                                    VerticalOptions="Center"
+                                    TextColor="Black"
+                                    Text="{Binding S_PALABRASCLAVE}">
+                                    </Label>
+                                </StackLayout>
 
                             </StackLayout>
                         </Grid>

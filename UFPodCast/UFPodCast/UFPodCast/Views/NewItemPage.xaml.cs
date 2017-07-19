@@ -16,8 +16,8 @@ namespace UFPodCast.Views
 
             Item = new Item
             {
-                Text = "Item name",
-                Description = "This is a nice description"
+                //Text = "Item name",
+                //Description = "This is a nice description"
             };
 
             BindingContext = this;

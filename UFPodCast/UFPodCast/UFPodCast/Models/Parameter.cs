@@ -1,4 +1,4 @@
-﻿//using SQLite.Net.Attributes;
+﻿using SQLite.Net.Attributes;
 using System;
 using System.Collections.Generic;
 
@@ -6,13 +6,11 @@ namespace UFPodCast.Models
 {
     public class Parameter
     {
-        //[PrimaryKey, AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public int ParameterId { get; set; }
 
         public string URLBase { get; set; }
-
-
-        public string URLBase2 { get; set; }
+        
 
         public string Option { get; set; }
 

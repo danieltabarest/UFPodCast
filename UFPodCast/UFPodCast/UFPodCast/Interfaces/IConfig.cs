@@ -1,4 +1,4 @@
-﻿//using SQLite.Net.Interop;
+﻿using SQLite.Net.Interop;
 
 namespace UFPodCast.Interfaces
 {
@@ -6,6 +6,6 @@ namespace UFPodCast.Interfaces
     {
         string DirectoryDB { get; }
 
-        //ISQLitePlatform Platform { get; }
+        ISQLitePlatform Platform { get; }
     }
 }

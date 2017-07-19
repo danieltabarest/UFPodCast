@@ -7,7 +7,7 @@ namespace UFPodCast.ViewModels
         public Item Item { get; set; }
         public ItemDetailViewModel(Item item = null)
         {
-            Title = item.Text;
+            Title = item.S_NOMBRE;
             Item = item;
         }
 

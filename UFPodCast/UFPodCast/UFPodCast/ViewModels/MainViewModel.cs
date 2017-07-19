@@ -52,7 +52,6 @@ namespace UFPodCast.ViewModels
             navigationService = new NavigationService();
             dataService = new DataService();
 
-            //Title = "Browse";
             Items = new ObservableRangeCollection<Item>();
             OldItem = new List<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
@@ -67,7 +66,7 @@ namespace UFPodCast.ViewModels
             SearchCommand = new Command((object obj) =>
             {
                 var value = (string)obj;
-                Items.ReplaceRange(OldItem.Where(x => x.Text.Contains(value) || x.Description.Contains(value)));
+                Items.ReplaceRange(OldItem.Where(x => x.S_NOMBRE.Contains(value) || x.S_DESCRIPCION.Contains(value)));
             });
 
             LoadMenu();
@@ -122,11 +121,20 @@ namespace UFPodCast.ViewModels
                     return;
                 }
 
+                var parameters = dataService.First<Parameter>(false);
 
+                var response = await apiService.Get<Item>(parameters.URLBase, "/api", "/vListadoPodCasts");
+                if (!response.IsSuccess)
+                {
+                    IsBusy = false;
+                    await dialogService.ShowMessage("Error", "Problem ocurred retrieving user information, try latter.");
+                    return;
+                }
+                var podcast = (List<Item>)response.Result;
                 Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                Items.ReplaceRange(items);
-                OldItem.AddRange(items);
+                //var items = await DataStore.GetItemsAsync(true);
+                Items.ReplaceRange(podcast);
+                OldItem.AddRange(podcast);
             }
             catch (Exception ex)
             {
@@ -174,7 +182,7 @@ namespace UFPodCast.ViewModels
 
         private void LoadMenu()
         {
-            
+
             Menu = new ObservableCollection<MenuItemViewModel>();
 
             Menu.Add(new MenuItemViewModel

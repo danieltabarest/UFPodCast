@@ -2124,6 +2124,8 @@ namespace UFPodCast.Droid
 			global::Plugin.MediaManager.Forms.Android.Resource.Styleable.ViewStubCompat_android_id = global::UFPodCast.Droid.Resource.Styleable.ViewStubCompat_android_id;
 			global::Plugin.MediaManager.Forms.Android.Resource.Styleable.ViewStubCompat_android_inflatedId = global::UFPodCast.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
 			global::Plugin.MediaManager.Forms.Android.Resource.Styleable.ViewStubCompat_android_layout = global::UFPodCast.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.ApplicationName = global::UFPodCast.Droid.Resource.String.ApplicationName;
+			global::SQLite.Net.Platform.XamarinAndroid.Resource.String.Hello = global::UFPodCast.Droid.Resource.String.Hello;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.actionBarSize = global::UFPodCast.Droid.Resource.Attribute.actionBarSize;
 		}
 		
