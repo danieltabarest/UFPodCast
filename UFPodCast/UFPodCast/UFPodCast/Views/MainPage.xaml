@@ -28,7 +28,6 @@
                                 <ColumnDefinition Width="Auto"></ColumnDefinition>
                                 <ColumnDefinition Width="*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-
                             <StackLayout
                                 Orientation="Horizontal">
                                 <Image
@@ -43,13 +42,13 @@
                                 <StackLayout VerticalOptions="Center" Orientation="Horizontal" >
                                     <Label
                                     FontAttributes="Bold"
-                                    FontSize="Medium"
+                                    FontSize="Small"
                                     VerticalOptions="Center"
                                     TextColor="Black"
                                     Text="Autor:">
                                     </Label>
                                     <Label
-                                    FontSize="Medium"
+                                    FontSize="Small"
                                     VerticalOptions="Center"
                                     TextColor="Black"
                                     Text="{Binding ID_AUTOR}">
@@ -59,14 +58,13 @@
                                 <StackLayout VerticalOptions="Center" Orientation="Horizontal" >
                                     <Label
                                     FontAttributes="Bold"
-                                    FontSize="Medium"
+                                    FontSize="Small"
                                     VerticalOptions="Center"
                                     TextColor="Black"
                                     Text="CATEGORIA:">
                                     </Label>
                                     <Label
-                                    
-                                    FontSize="Medium"
+                                    FontSize="Small"
                                     VerticalOptions="Center"
                                     TextColor="Black"
                                     Text="{Binding ID_CATEGORIA}">
@@ -75,29 +73,29 @@
 
                                 <StackLayout VerticalOptions="Center" Orientation="Horizontal" >
                                     <Label
-                                        FontAttributes="Bold"
-                                    FontSize="Medium"
+                                    FontAttributes="Bold"
+                                    FontSize="Small"
                                     VerticalOptions="Center"
                                     TextColor="Black"
                                     Text="NOMBRE:">
                                     </Label>
                                     <Label
-                                    FontSize="Medium"
+                                    FontSize="Small"
                                     VerticalOptions="Center"
                                     TextColor="Black"
                                     Text="{Binding S_NOMBRE}">
                                     </Label>
                                 </StackLayout>
-                                <StackLayout VerticalOptions="Center" Orientation="Horizontal" >
+                                <StackLayout VerticalOptions="Center" Orientation="Vertical" >
                                     <Label
                                         FontAttributes="Bold"
-                                    FontSize="Medium"
+                                    FontSize="Small"
                                     VerticalOptions="Center"
                                     TextColor="Black"
                                     Text="DESCRIPCION:">
                                     </Label>
                                     <Label
-                                    FontSize="Medium"
+                                    FontSize="Small"
                                     VerticalOptions="Center"
                                     TextColor="Black"
                                     Text="{Binding S_DESCRIPCION}">
@@ -107,13 +105,13 @@
                                 <StackLayout VerticalOptions="Center" Orientation="Horizontal" >
                                     <Label
                                         FontAttributes="Bold"
-                                    FontSize="Medium"
+                                    FontSize="Small"
                                     VerticalOptions="Center"
                                     TextColor="Black"
                                     Text="PALABRASCLAVE:">
                                     </Label>
                                     <Label
-                                    FontSize="Medium"
+                                    FontSize="Small"
                                     VerticalOptions="Center"
                                     TextColor="Black"
                                     Text="{Binding S_PALABRASCLAVE}">
