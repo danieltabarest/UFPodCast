@@ -9,9 +9,20 @@
              BackgroundColor="White"
             Title="PodCast"
             BindingContext="{Binding Main, Source={StaticResource Locator}}">
-    <StackLayout
+    <StackLayout Orientation="Horizontal"
         Padding="8">
-        <ListView x:Name="ItemsListView"
+        <StackLayout Orientation="Vertical" IsVisible="{Binding IsVisibleError}" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+            <Image Source="leon2.jpg" Aspect="AspectFill" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" WidthRequest="100"
+            HeightRequest="150">
+            </Image>
+            <Label FontAttributes="Bold" FontSize="Small" HorizontalOptions="Center" VerticalOptions="Center" TextColor="Black" Text="Oh no!">
+            </Label>
+            <Label FontAttributes="Bold" FontSize="Small" TextColor="Black" Text="Estamos en mantenimiento!">
+            </Label>
+            <Button Text="Intentar de nuevo"  Command="{Binding LoadItemsCommand}"></Button>
+        </StackLayout>
+
+        <ListView x:Name="ItemsListView" IsVisible="{Binding IsVisibleListView}"
            ItemsSource="{Binding Items}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"

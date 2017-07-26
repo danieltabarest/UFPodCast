@@ -27,17 +27,46 @@ namespace UFPodCast.ViewModels
         private NavigationService navigationService;
         private bool isRefreshing = false;
         string searchResult;
-
+        bool isvisibleerror = false;
+        bool isvisiblelistview = true;
         #endregion
 
         #region Properties
-        //public PodCastViewModel PodCastViewModel { get; set; }
-
         //public PodCastViewModel ItemDetailViewModel { get; set; }
 
         public ObservableCollection<MenuItemViewModel> Menu { get; set; }
 
         public List<Item> OldItem { get; set; }
+
+        public bool IsVisibleError
+        {
+            get
+            {
+                return isvisibleerror;
+            }
+
+            set
+            {
+                isvisibleerror = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsVisibleListView
+        {
+            get
+            {
+                return isvisiblelistview;
+            }
+
+            set
+            {
+                isvisiblelistview = value;
+                OnPropertyChanged();
+            }
+        }
+        
+
         public ObservableRangeCollection<Item> Items { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -127,6 +156,8 @@ namespace UFPodCast.ViewModels
                 if (!response.IsSuccess)
                 {
                     IsBusy = false;
+                    IsVisibleError = true;
+                    IsVisibleListView = !IsVisibleError;
                     await dialogService.ShowMessage("Error", "Problem ocurred retrieving user information, try latter.");
                     return;
                 }
