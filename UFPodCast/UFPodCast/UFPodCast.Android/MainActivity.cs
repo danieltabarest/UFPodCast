@@ -1,9 +1,12 @@
-﻿using Android.App;
+﻿using Acr.UserDialogs;
+using Android.App;
 using Android.Content.PM;
 using Android.OS;
 using Android.Views;
 using ImageCircle.Forms.Plugin.Droid;
 using Plugin.MediaManager.Forms;
+using System;
+using Xamarin.Forms;
 
 namespace UFPodCast.Droid
 {
@@ -17,13 +20,17 @@ namespace UFPodCast.Droid
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(bundle);
+            UserDialogs.Init(() => (Activity)Forms.Context);
             Plugin.MediaManager.Forms.Android.VideoViewRenderer.Init();
             global::Xamarin.Forms.Forms.Init(this, bundle);
-            
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
             ImageCircleRenderer.Init();
             LoadApplication(new App());
         }
+        private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
 
+        }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
         {

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customrenderers="clr-namespace:UFPodCast.CustomRenderers;assembly=UFPodCast" 
              x:Class="UFPodCast.Views.MainPage"
-             SearchPlaceHolderText="Type to Search"
+             SearchPlaceHolderText="Búsquedad"
 		     SearchCommand="{Binding SearchCommand}"
              xmlns:controls="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin.Abstractions"
              BackgroundColor="White"
@@ -19,7 +19,7 @@
             </Label>
             <Label FontAttributes="Bold" FontSize="Small" TextColor="Black" Text="Estamos en mantenimiento!">
             </Label>
-            <Button Text="Intentar de nuevo"  Command="{Binding LoadItemsCommand}"></Button>
+            <Button Text="Intentar de nuevo" IsEnabled="{Binding Enable}" Command="{Binding LoadItemsCommand}"></Button>
         </StackLayout>
 
         <ListView x:Name="ItemsListView" IsVisible="{Binding IsVisibleListView}"

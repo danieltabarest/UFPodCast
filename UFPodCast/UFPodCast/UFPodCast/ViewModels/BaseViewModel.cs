@@ -1,4 +1,7 @@
-﻿using UFPodCast.Helpers;
+﻿using Acr.UserDialogs;
+using FreshMvvm;
+using System.Threading.Tasks;
+using UFPodCast.Helpers;
 using UFPodCast.Models;
 using UFPodCast.Services;
 
@@ -16,8 +19,22 @@ namespace UFPodCast.ViewModels
         bool isBusy = false;
         public bool IsBusy
         {
-            get { return isBusy; }
-            set { SetProperty(ref isBusy, value); }
+
+            get
+            {
+                return isBusy;
+            }
+
+            set
+            {
+                isBusy = value;
+                if (value)
+                    UserDialogs.Instance.ShowLoading("Loading", MaskType.Black);
+                else
+                    UserDialogs.Instance.HideLoading();
+            }
+            //get { return isBusy; }
+            //set { SetProperty(ref isBusy, value); }
         }
         /// <summary>
         /// Private backing field to hold the title
@@ -31,6 +48,27 @@ namespace UFPodCast.ViewModels
             get { return title; }
             set { SetProperty(ref title, value); }
         }
+
+
+        protected async Task ReAuthenticateAsync()
+        {
+            //await PushModalAsync<LoginPageModel>();
+        }
+
+        //protected async Task DisplayNoConnectionMessage()
+        //{
+        //    await PushModalAsync<NoConnectionMessagePageModel>();
+        //}
+
+        //protected async Task DisplayDataErrorMessage()
+        //{
+        //    await PushModalAsync<DataErrorMessagePageModel>();
+        //}
+
+        //protected async Task PushModalAsync<T>() where T : FreshBasePageModel
+        //{
+        //    await PushModalAsync<T>(null);
+        //}
     }
 }
 

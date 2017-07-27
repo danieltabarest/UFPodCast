@@ -31,8 +31,8 @@
                                 </Grid.ColumnDefinitions>
                                 <Image 
                                 Source="{Binding Icon}"
-                                WidthRequest="50"
-                                HeightRequest="50"/>
+                                WidthRequest="35"
+                                HeightRequest="35"/>
                                 <Label 
                                 Grid.Column="1"
                                 VerticalOptions="Center"

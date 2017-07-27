@@ -15,6 +15,7 @@ using UFPodCast.Views;
 using GalaSoft.MvvmLight.Command;
 using System.Net.Http;
 using Plugin.Connectivity;
+using UFPodCast.Exceptions;
 
 namespace UFPodCast.ViewModels
 {
@@ -51,6 +52,7 @@ namespace UFPodCast.ViewModels
                 OnPropertyChanged();
             }
         }
+        public bool Enable { get; set; }
 
         public bool IsVisibleListView
         {
@@ -131,7 +133,7 @@ namespace UFPodCast.ViewModels
 
             if (IsBusy)
                 return;
-
+            Enable = true;
             IsBusy = true;
 
             try
@@ -156,6 +158,7 @@ namespace UFPodCast.ViewModels
                 if (!response.IsSuccess)
                 {
                     IsBusy = false;
+                    Enable = false;
                     IsVisibleError = true;
                     IsVisibleListView = !IsVisibleError;
                     await dialogService.ShowMessage("Error", "Problem ocurred retrieving user information, try latter.");
@@ -180,6 +183,7 @@ namespace UFPodCast.ViewModels
             finally
             {
                 IsBusy = false;
+                Enable = false;
             }
         }
 
