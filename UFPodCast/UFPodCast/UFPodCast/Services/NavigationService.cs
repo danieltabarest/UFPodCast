@@ -28,10 +28,10 @@ namespace UFPodCast.Services
             switch (pageName)
             {
 
-                //case "":
-                //    await App.Navigator.PushAsync(new SelectGroupPage());
-                //    break;
-             
+                case "mas":
+                    await App.Navigator.PushAsync(new MasterPage());
+                    break;
+
                 default:
                     break;
             }
